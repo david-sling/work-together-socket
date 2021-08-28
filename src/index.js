@@ -8,8 +8,9 @@ const { PORT = 8000 } = process.env;
 
 io.on("connection", (socket) => {
   console.log(`User: ${socket.id} connected`);
-  socket.on("change", async ({ row, column, text, sheetId }) => {
-    io.emit(sheetId, { row, column, text });
+
+  socket.on("change", async ({ row, column, text, sheetId, sender }) => {
+    io.emit(sheetId, { row, column, text, sender });
   });
 });
 
